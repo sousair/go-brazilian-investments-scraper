@@ -1,0 +1,4 @@
+- Improve error logging
+  - Add json tag field on convert error log
+- Maybe change everything to pointers
+  - This will make it easier to check if a field is - or 0
