@@ -1,4 +1,4 @@
-package scrapper
+package scraper
 
 var (
 	// Stock Data

@@ -1,11 +1,9 @@
-package scrapper
-
-import brazilianinvestimentsscrapper "github.com/sousair/go-brazilian-investments-scraper"
+package scraper
 
 type scrapField struct {
 	Selector  string
 	FieldType string
-	Fn        func(field string, stockData *brazilianinvestimentsscrapper.StockData) error
+	Fn        func(field string, stockData *StockData) error
 }
 
 var (
@@ -14,7 +12,7 @@ var (
 		{
 			nameSelector,
 			"string",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				stockData.Name = field
 				return nil
 			},
@@ -22,7 +20,7 @@ var (
 		{
 			priceSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -34,7 +32,7 @@ var (
 		{
 			equitySelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -46,7 +44,7 @@ var (
 		{
 			totalAssetsSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -58,7 +56,7 @@ var (
 		{
 			totalCurrentAssetsSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -70,7 +68,7 @@ var (
 		{
 			grossDebtSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -82,7 +80,7 @@ var (
 		{
 			disponibilitiesSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -94,7 +92,7 @@ var (
 		{
 			netDebtSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -106,7 +104,7 @@ var (
 		{
 			marketCapSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -118,7 +116,7 @@ var (
 		{
 			evSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -130,7 +128,7 @@ var (
 		{
 			totalSharesSelector,
 			"int",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseIntField(field)
 				if err != nil {
 					return err
@@ -142,7 +140,7 @@ var (
 		{
 			freeFloatSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -158,7 +156,7 @@ var (
 		{
 			dividendYieldSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -170,7 +168,7 @@ var (
 		{
 			plRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -182,7 +180,7 @@ var (
 		{
 			pegRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -194,7 +192,7 @@ var (
 		{
 			pvpRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.PVpRatio = value
 				if err != nil {
@@ -206,7 +204,7 @@ var (
 		{
 			evEbitdaRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.EVEbitdaRatio = value
 				if err != nil {
@@ -218,7 +216,7 @@ var (
 		{
 			evEbitRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.EVEbitRatio = value
 				if err != nil {
@@ -230,7 +228,7 @@ var (
 		{
 			pEbitdaRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.PEBitdaRatio = value
 				if err != nil {
@@ -242,7 +240,7 @@ var (
 		{
 			pEbitRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.PEBitRatio = value
 				if err != nil {
@@ -254,7 +252,7 @@ var (
 		{
 			vpaSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.VPA = value
 				if err != nil {
@@ -266,7 +264,7 @@ var (
 		{
 			pAtivoRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.PAtivoRatio = value
 				if err != nil {
@@ -278,7 +276,7 @@ var (
 		{
 			lpaSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.LPA = value
 				if err != nil {
@@ -290,7 +288,7 @@ var (
 		{
 			pSRRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.PSRRatio = value
 				if err != nil {
@@ -302,7 +300,7 @@ var (
 		{
 			pCapGiroRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.PCapGiroRatio = value
 				if err != nil {
@@ -314,7 +312,7 @@ var (
 		{
 			pAtivoCircLiqRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				stockData.ValuationIndicators.PAtivoCircLiqRatio = value
 				if err != nil {
@@ -330,7 +328,7 @@ var (
 		{
 			divLiqSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -342,7 +340,7 @@ var (
 		{
 			divBrutaSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -354,7 +352,7 @@ var (
 		{
 			divLiqPLRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -366,7 +364,7 @@ var (
 		{
 			divLiqEbitdaRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -378,7 +376,7 @@ var (
 		{
 			divLiqEbitRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -390,7 +388,7 @@ var (
 		{
 			plAtivosRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -402,7 +400,7 @@ var (
 		{
 			passivosAtivosRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -414,7 +412,7 @@ var (
 		{
 			liqCorRatioSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -430,7 +428,7 @@ var (
 		{
 			mBrutaSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -442,7 +440,7 @@ var (
 		{
 			mEbitdaSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -454,7 +452,7 @@ var (
 		{
 			mEbitSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -466,7 +464,7 @@ var (
 		{
 			mliqSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -482,7 +480,7 @@ var (
 		{
 			roeSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -494,7 +492,7 @@ var (
 		{
 			roaSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -506,7 +504,7 @@ var (
 		{
 			roicSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -518,7 +516,7 @@ var (
 		{
 			giroAtivosSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -534,7 +532,7 @@ var (
 		{
 			garGer5AnosSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
@@ -546,7 +544,7 @@ var (
 		{
 			garLuc5AnosSelector,
 			"float64",
-			func(field string, stockData *brazilianinvestimentsscrapper.StockData) error {
+			func(field string, stockData *StockData) error {
 				value, err := parseFloatField(field)
 				if err != nil {
 					return err
